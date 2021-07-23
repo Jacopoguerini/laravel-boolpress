@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <h3 class="my-4">Elenco Post</h3>
 
         <table class="table table-dark table-striped">
             <thead>
