@@ -2,31 +2,44 @@
 
 @section('content')
     <div class="container">
-        <h3 class="my-4">Elenco Post</h3>
+        <h3 class="my-3">Elenco Post</h3>
 
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Titolo</th>
-                    <th>Slug</th>
+                    <th class="col-1">Id</th>
+                    <th class="col-2">Titolo</th>
+                    <th class="col-2">Slug</th>
                     <th colspan="3">Azioni</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                @foreach ($posts as $item)
                     <tr>
-                        <td>{{ $post->id }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->slug }}</td>
-                        <td>DETTAGLI</td>
-                        <td>MODIFICA</td>
-                        <td>ELIMINA</td>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->title }}</td>
+                        <td class="text-capitalize">{{ $item->slug }}</td>
+                        <td>
+                            <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-primary text-uppercase">
+                                dettagli
+                            </a>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-warning text-uppercase">
+                                modifica
+                            </a>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-danger text-uppercase">
+                                elimina
+                            </a>
+                        </td>
 
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        {{ $posts->links() }}
 
     </div>
 @endsection
