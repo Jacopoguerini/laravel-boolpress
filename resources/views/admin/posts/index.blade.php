@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h3 class="my-3">Elenco Post</h3>
+        <a href="{{ route("admin.posts.create") }}" class="btn btn-primary mb-3">Aggiungi post</a>
 
         <table class="table table-dark table-striped">
             <thead>
