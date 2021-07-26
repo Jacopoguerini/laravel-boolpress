@@ -15,7 +15,7 @@ class PostController extends Controller
         'content' => 'required'
     ];
 
-    private function generateSlug($data) {
+    private function createSlug($data) {
         $slug = Str::slug($data["title"], '-');
 
         $existingPost = Post::where('slug', $slug)->first();
@@ -69,7 +69,7 @@ class PostController extends Controller
 
         $newPost = new Post();
 
-        $slug = $this->generateSlug($data);
+        $slug = $this->createSlug($data);
 
         $data['slug'] = $slug;
         
@@ -108,9 +108,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        $request->validate($this->postValidationArray);
+
+        if($post->title != $data["title"]) {
+            $slug = $this->createSlug($data);
+            $data["slug"] = $slug;
+        }
+
+        $post->update($data);
+
+        return redirect()
+        ->route('admin.posts.show', $post->id)
+        ->with('message', "$post->slug modificato con successo.");
     }
 
     /**
@@ -125,6 +138,6 @@ class PostController extends Controller
 
        return redirect()
         ->route('admin.posts.index')
-        ->with('deleted', $post->title);
+        ->with('deleted', "$post->slug eliminato con successo.");
     }
 }

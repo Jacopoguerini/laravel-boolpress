@@ -2,8 +2,15 @@
 
 @section('content')
     <div class="container">
+
         <h3 class="my-3">Elenco Post</h3>
         <a href="{{ route("admin.posts.create") }}" class="btn btn-primary mb-3">Aggiungi post</a>
+
+        @if (session('deleted'))
+            <div class="alert alert-success">
+                {{ session('deleted') }}
+            </div>
+        @endif
 
         <table class="table table-dark table-striped">
             <thead>
@@ -21,12 +28,12 @@
                         <td>{{ $item->title }}</td>
                         <td class="text-capitalize">{{ $item->slug }}</td>
                         <td>
-                            <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-primary text-uppercase">
+                            <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-info text-uppercase">
                                 dettagli
                             </a>
                         </td>
                         <td>
-                            <a href="" class="btn btn-warning text-uppercase">
+                            <a href="{{ route("admin.posts.edit", $item->id) }}" class="btn btn-warning text-uppercase">
                                 modifica
                             </a>
                         </td>
