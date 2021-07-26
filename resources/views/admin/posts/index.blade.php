@@ -31,9 +31,11 @@
                             </a>
                         </td>
                         <td>
-                            <a href="" class="btn btn-danger text-uppercase">
-                                elimina
-                            </a>
+                            <form action="{{ route('admin.posts.destroy', $item->id) }}" method="POST" onSubmit="return confirm('Sei sicuro di voler eliminare questo post?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger text-uppercase">elimina</button>
+                            </form>
                         </td>
 
                     </tr>
