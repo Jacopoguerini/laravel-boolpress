@@ -7,12 +7,9 @@
         <h2 class="my-3">{{ $post->title }}</h2>
         <h5>{{ $post->slug }}</h5>
         <h4 class="mb-3">Categoria:
-            <strong>
-                <a href="" class="badge badge-info">
-                    {{ $post->category->name }}
-                </a>
-            </strong>
-            {{-- {{ route('admin.categories.show', $post->category->id) }} --}}
+            <a href="{{ route('admin.categories.show', $post->category->id)}}" class="badge badge-info">
+                {{ $post->category->name }}
+            </a>
         </h4>
 
         @if (session('message'))
