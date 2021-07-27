@@ -18,6 +18,7 @@
                     <th class="col-1">Id</th>
                     <th class="col-2">Titolo</th>
                     <th class="col-2">Slug</th>
+                    <th class="col-1">Categoria</th>
                     <th colspan="3">Azioni</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->title }}</td>
                         <td class="text-capitalize">{{ $item->slug }}</td>
+                        <td>{{ $item->category->name }}</td>
                         <td>
                             <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-info text-uppercase">
                                 dettagli
