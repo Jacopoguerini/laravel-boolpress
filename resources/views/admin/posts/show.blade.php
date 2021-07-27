@@ -26,7 +26,7 @@
     </div>
 
     <div class="m-3 d-flex justify-content-center">
-        <a class="btn btn-primary" href="{{ route("admin.posts.index") }}">Torna all'elenco post</a>
+        <a class="btn btn-secondary" href="{{ route("admin.posts.index") }}">Torna all'elenco post</a>
     </div>
 
 @endsection
