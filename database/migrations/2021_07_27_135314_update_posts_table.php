@@ -19,7 +19,10 @@ class UpdatePostsTable extends Migration
                 ->nullable()
                 ->after('id');
 
-            $table->foreign('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('SET NULL');
         });
     }
 
@@ -31,7 +34,9 @@ class UpdatePostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            //
+            $table->dropForeign('posts_category_id_foreign');
+
+            $table->dropColumn('category_id');
         });
     }
 }
