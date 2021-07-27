@@ -36,13 +36,13 @@
                         </option>
                     @endforeach
                 </select>
-
                 @error('category_id')
                     <h6 class="text-danger">{{ $message }}</h6>
                 @enderror
             </div>
             
             <button type="submit" class="btn btn-success">Aggiungi</button>
+            <a class="btn btn-secondary ml-3" href="{{ route("admin.posts.index") }}">Torna all'elenco post</a>
         </form>
     </div>
     
