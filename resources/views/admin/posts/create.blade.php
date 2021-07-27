@@ -21,6 +21,27 @@
                     <h6 class="text-danger">{{ $message }}</h6>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="category_id">Categoria</label>
+
+                <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
+
+                    <option value="">Seleziona una categoria</option>
+
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                        {{ ($category->id == old('category_id')) ? 'selected' : '' }}>
+                                {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('category_id')
+                    <h6 class="text-danger">{{ $message }}</h6>
+                @enderror
+            </div>
+            
             <button type="submit" class="btn btn-success">Aggiungi</button>
         </form>
     </div>
