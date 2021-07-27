@@ -13,7 +13,7 @@ class PostController extends Controller
     private $postValidationArray = [
         'title' => 'required|max:255',
         'content' => 'required',
-        'category_id' => 'nullable|exists:categories,id'
+        'category_id' => 'exists:categories,id'
     ];
 
     private function createSlug($data) {
