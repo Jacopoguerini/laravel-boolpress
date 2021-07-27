@@ -9,7 +9,6 @@ use App\Post;
 
 class PostController extends Controller
 {
-    // funzioni generali
     private $postValidationArray = [
         'title' => 'required|max:255',
         'content' => 'required'
