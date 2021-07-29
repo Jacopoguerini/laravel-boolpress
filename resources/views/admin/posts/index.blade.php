@@ -28,7 +28,11 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->title }}</td>
                         <td class="text-capitalize">{{ $item->slug }}</td>
-                        <td>{{ $item->category->name }}</td>
+                        @if ($item->category != null)
+                            <td>{{ $item->category['name'] }}</td>
+                        @else 
+                            <td>Nessuna</td>
+                        @endif
                         <td>
                             <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-info text-uppercase">
                                 dettagli
