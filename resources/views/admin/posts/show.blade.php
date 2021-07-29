@@ -4,18 +4,30 @@
 
     <div class="container">
         
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <h2 class="my-3">{{ $post->title }}</h2>
         <h5>{{ $post->slug }}</h5>
+        
         <h4 class="mb-3">Categoria:
             <a href="{{ route('admin.categories.show', $post->category->id)}}" class="badge badge-info">
                 {{ $post->category->name }}
             </a>
         </h4>
 
-        @if (session('message'))
-            <div class="alert alert-success mb-4">
-                {{ session('message') }}
+        @if (count($post->tags) > 0)
+            <div class="h5 mb-3">
+                <span>Tag:</span>
+                @foreach ($post->tags as $tag)
+                    <span class="badge badge-pill badge-dark">{{ $tag->name }}</span>    
+                @endforeach
             </div>
+        @else
+            <h6 class="mt-3 mb-2">Nessun tag associato</h6>    
         @endif
 
         <div class="d-flex align-items-center mt-2 mb-2">
