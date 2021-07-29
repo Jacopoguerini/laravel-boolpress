@@ -40,6 +40,25 @@
                     <h6 class="text-danger">{{ $message }}</h6>
                 @enderror
             </div>
+
+            <div class="form-group mb-3">
+                <h6>Tag</h6>
+                @foreach ($tags as $tag)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="tags[]" type="checkbox" id="tag-{{ $tag->id }}"
+                        value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+
+                        <label class="form-check-label" for="tag-{{ $tag->id }}">
+                            {{ $tag->name }}
+                        </label>
+                    </div>     
+                @endforeach 
+                @error('tags')
+                    <div>
+                        <small class="text-danger">{{ $message }}</small> 
+                    </div>
+                @enderror   
+            </div>
             
             <button type="submit" class="btn btn-success">Aggiungi</button>
             <a class="btn btn-secondary ml-3" href="{{ route("admin.posts.index") }}">Torna all'elenco post</a>
