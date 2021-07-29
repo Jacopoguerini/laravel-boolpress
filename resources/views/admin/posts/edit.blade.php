@@ -38,7 +38,7 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-5">
+            <div class="form-group mb-3">
                 <h5>Tags</h5>
                 @foreach ($tags as $tag)
                     <div class="form-check form-check-inline">

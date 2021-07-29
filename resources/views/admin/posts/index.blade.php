@@ -19,6 +19,7 @@
                     <th class="col-2">Titolo</th>
                     <th class="col-2">Slug</th>
                     <th class="col-1">Categoria</th>
+                    <th class="col-2">Tags</th>
                     <th colspan="3">Azioni</th>
                 </tr>
             </thead>
@@ -28,10 +29,19 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->title }}</td>
                         <td class="text-capitalize">{{ $item->slug }}</td>
-                        @if ($item->category != null)
-                            <td>{{ $item->category['name'] }}</td>
-                        @else 
-                            <td>Nessuna</td>
+                       
+                        <td>{{ $item->category['name'] }}</td>
+
+                        @if (count($item->tags) > 0)
+                            <td>
+                                @foreach ($item->tags as $tag)
+                                    <span class="badge badge-pill badge-light">{{ $tag->name }}</span>
+                                @endforeach
+                            </td>
+                        @else
+                            <td>
+                                <span class="badge badge-pill badge-warning">Nessun Tag</span>
+                            </td>
                         @endif
                         <td>
                             <a href="{{ route("admin.posts.show", $item->id) }}" class="btn btn-info text-uppercase">
