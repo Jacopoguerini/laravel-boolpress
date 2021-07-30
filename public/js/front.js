@@ -1989,6 +1989,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1996,7 +2021,9 @@ __webpack_require__.r(__webpack_exports__);
   name: 'App',
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      current_page: 1,
+      last_page: 1
     };
   },
   components: {
@@ -2017,9 +2044,12 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get('http://127.0.0.1:8000/api/posts').then(function (res) {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get("http://127.0.0.1:8000/api/posts?page=".concat(page)).then(function (res) {
         console.log(res.data);
-        _this.posts = res.data;
+        _this.posts = res.data.data;
+        _this.current_page = res.data.current_page;
+        _this.last_page = res.data.last_page;
 
         _this.posts.forEach(function (element) {
           element.excerpt = _this.truncateText(element.content, 150);
@@ -3267,6 +3297,58 @@ var render = function() {
             return _c("Card", { key: post.id, attrs: { item: post } })
           }),
           1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "text-center my-3" },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-dark mr-2",
+                attrs: { disabled: _vm.current_page == 1 },
+                on: {
+                  click: function($event) {
+                    return _vm.getPosts(_vm.current_page - 1)
+                  }
+                }
+              },
+              [_vm._v("\n                Prev\n            ")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.last_page, function(n) {
+              return _c(
+                "button",
+                {
+                  key: n,
+                  staticClass: "btn mr-2",
+                  class: n == _vm.current_page ? "btn-primary" : "btn-dark",
+                  on: {
+                    click: function($event) {
+                      return _vm.getPosts(n)
+                    }
+                  }
+                },
+                [_vm._v("\n                " + _vm._s(n) + "\n            ")]
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-dark",
+                attrs: { disabled: _vm.current_page == _vm.last_page },
+                on: {
+                  click: function($event) {
+                    return _vm.getPosts(_vm.current_page + 1)
+                  }
+                }
+              },
+              [_vm._v("\n                Next\n            ")]
+            )
+          ],
+          2
         )
       ]),
       _vm._v(" "),

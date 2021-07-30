@@ -6,11 +6,11 @@
         <main class="container my-3">
             <h1>Titolo del Blog</h1>
             <div class="row">
-
                 <Card
                 v-for="post in posts" :key="post.id"
                 :item="post" />
 
+                <!-- Test iniziale senza componente -->
                 <!-- <div 
                 class="col-4 my-2"
                 v-for="post in posts" :key="post.id">
@@ -22,6 +22,31 @@
                         </div>
                     </div>            
                 </div> -->
+                <!-- Test iniziale senza componente -->
+            </div>
+
+            <div class="text-center my-3">
+
+                <button :disabled="current_page == 1"
+                class="btn btn-dark mr-2"
+                @click="getPosts(current_page - 1)">
+                    Prev
+                </button>
+
+                <button 
+                class="btn mr-2"
+                :class="(n == current_page) ? 'btn-primary' : 'btn-dark'"
+                v-for="n in last_page" :key="n"
+                @click="getPosts(n)">
+                    {{ n }}
+                </button>
+
+                <button :disabled="current_page == last_page"
+                class="btn btn-dark"
+                @click="getPosts(current_page + 1)">
+                    Next
+                </button>
+
             </div>
         </main>
 
@@ -38,7 +63,9 @@ export default {
     name: 'App',
     data: function() {
         return {
-            posts: []
+            posts: [],
+            current_page: 1,
+            last_page: 1
         }
     },
     components: {
@@ -54,13 +81,15 @@ export default {
                 return string;
             }
         },
-        getPosts: function() {
+        getPosts: function(page = 1) {
             axios
-            .get('http://127.0.0.1:8000/api/posts')
+            .get(`http://127.0.0.1:8000/api/posts?page=${page}`)
             .then(
                 res => {
                     console.log(res.data);
-                    this.posts = res.data;
+                    this.posts = res.data.data;
+                    this.current_page = res.data.current_page;
+                    this.last_page = res.data.last_page;
 
                     this.posts.forEach(
                         element => {
