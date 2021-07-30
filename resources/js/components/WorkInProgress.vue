@@ -1,5 +1,5 @@
 <template>
-    <div class="container text-center my-4">
+    <div class="m-4 d-flex flex-column align-items-center justify-content-center">
       <h1>{{ title }}</h1>
       <h2>{{ subtitle }}</h2>
   </div>
