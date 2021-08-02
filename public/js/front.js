@@ -2243,8 +2243,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SinglePost'
+  name: 'SinglePost',
+  data: function data() {
+    return {
+      post: null
+    };
+  },
+  created: function created() {
+    this.getPosts(this.$route.params.slug);
+  },
+  methods: {
+    getPosts: function getPosts(slug) {
+      var _this = this;
+
+      axios.get("http://127.0.0.1:8000/api/posts/".concat(slug)).then(function (res) {
+        _this.post = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3722,18 +3744,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "my-4" },
+    [
+      _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+      _vm._v(" "),
+      _c("p", { staticClass: "my-3" }, [_vm._v(_vm._s(_vm.post.content))]),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { staticClass: "btn btn-secondary", attrs: { to: { name: "blog" } } },
+        [_vm._v("Torna all'elenco dei post")]
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-4" }, [
-      _c("h1", [_vm._v("Singolo Post")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
