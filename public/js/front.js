@@ -3428,7 +3428,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("footer", { staticClass: "text-center mb-3" }, [
+  return _c("footer", { staticClass: "text-center" }, [
     _vm._v("\n    Boolpress\n")
   ])
 }
@@ -3540,7 +3540,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-5" }, [
+    return _c("div", { staticClass: "my-4" }, [
       _c("h1", [_vm._v("Chi siamo")]),
       _vm._v(" "),
       _c("p", [_vm._v("Testo chi siamo")])
@@ -3568,7 +3568,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "my-5" }, [
+  return _c("div", { staticClass: "my-4" }, [
     _c("h1", [_vm._v("Blog")]),
     _vm._v(" "),
     _c(
@@ -3662,7 +3662,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-5" }, [
+    return _c("div", { staticClass: "my-4" }, [
       _c("h1", [_vm._v("Titolo del Blog")]),
       _vm._v(" "),
       _c("p", [_vm._v("Testo della Home")])

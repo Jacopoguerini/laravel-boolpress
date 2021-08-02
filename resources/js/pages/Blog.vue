@@ -1,5 +1,5 @@
 <template>
-    <div class="my-5">
+    <div class="my-4">
         <h1>Blog</h1>
         <div class="row">
             <Card
