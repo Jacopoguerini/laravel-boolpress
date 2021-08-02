@@ -1,15 +1,21 @@
 <template>
-    <div class="my-4">
+    <div class="my-4" v-if="post">
         <h1>{{ post.title }}</h1>
         <p class="my-3">{{ post.content }}</p>
 
         <router-link :to="{ name: 'blog' }" class="btn btn-secondary">Torna all'elenco dei post</router-link>
     </div>
+    <Loader v-else />
 </template>
 
 <script>
+import Loader from '../components/Loader';
+
 export default {
     name: 'SinglePost',
+    components: {
+        Loader
+    },
     data: function() {
         return {
             post: null
