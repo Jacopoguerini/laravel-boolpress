@@ -3501,7 +3501,7 @@ var render = function() {
           _c("ul", { staticClass: "navbar-nav" }, [
             _c(
               "li",
-              { staticClass: "nav-item active" },
+              { staticClass: "nav-item" },
               [
                 _c(
                   "router-link",
@@ -19697,6 +19697,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
+  linkExactActiveClass: 'active',
   routes: [{
     path: '/',
     name: 'home',

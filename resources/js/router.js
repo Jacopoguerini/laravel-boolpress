@@ -10,6 +10,7 @@ import SinglePost from './pages/SinglePost';
 
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass: 'active',
     routes: [
         {
             path: '/',
