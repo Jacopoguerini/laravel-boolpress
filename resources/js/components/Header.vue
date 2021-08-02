@@ -6,13 +6,13 @@
             <div>
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Post</a>
+                        <router-link :to="{ name: 'blog' }" class="nav-link">Blog</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contatti</a>
+                        <router-link :to="{ name: 'about' }" class="nav-link">Chi siamo</router-link>
                     </li>                    
                 </ul>
             </div>
