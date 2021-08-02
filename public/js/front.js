@@ -2288,6 +2288,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SinglePost',
@@ -3921,6 +3934,27 @@ var render = function() {
         { staticClass: "my-4" },
         [
           _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+          _vm._v(" "),
+          _c("h3", [
+            _c("span", { staticClass: "badge badge-info" }, [
+              _vm._v(_vm._s(_vm.post.category.name))
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "h5",
+            _vm._l(_vm.post.tags, function(tag) {
+              return _c(
+                "span",
+                {
+                  key: "tag-" + tag.id,
+                  staticClass: "badge badge-pill badge-dark mr-1"
+                },
+                [_vm._v("\n            " + _vm._s(tag.name) + "\n        ")]
+              )
+            }),
+            0
+          ),
           _vm._v(" "),
           _c("p", { staticClass: "my-3" }, [_vm._v(_vm._s(_vm.post.content))]),
           _vm._v(" "),
