@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import Home from './pages/Home';
+import About from './pages/About';
+import Blog from './pages/Blog';
 
 const router = new VueRouter({
     mode: 'history',
@@ -12,7 +14,17 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home 
-        }
+        },
+        {
+            path: '/about',
+            name: 'About',
+            component: About
+        },
+        {
+            path: '/blog',
+            name: 'blog',
+            component: Blog 
+        },
     ]
 }); 
 

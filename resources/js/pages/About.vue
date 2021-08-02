@@ -1,13 +1,13 @@
 <template>
     <div class="my-5">
-        <h1>Titolo del Blog</h1>
-        <p>Testo della Home</p>
+        <h1>Chi siamo</h1>
+        <p>Testo chi siamo</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Home'
+    name: 'About'
 }
 </script>
 
