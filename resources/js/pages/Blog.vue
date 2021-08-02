@@ -1,5 +1,5 @@
 <template>
-    <div class="my-4">
+    <div class="my-4" v-if="posts.length > 0">
         <h1>Blog</h1>
         <div class="row">
             <Card
@@ -45,10 +45,13 @@
 
         </div>
     </div>
+
+    <Loader v-else />
 </template>
 
 <script>
 import Card from '../components/Card';
+import Loader from '../components/Loader';
 
 export default {
     name: 'Blog',
@@ -60,7 +63,8 @@ export default {
         }
     },
     components: {
-        Card
+        Card,
+        Loader
     },
     methods: {
         truncateText: function(string, charsNumber = 100) {

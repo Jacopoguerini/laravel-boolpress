@@ -2149,6 +2149,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Card__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Card */ "./resources/js/components/Card.vue");
+/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Loader */ "./resources/js/components/Loader.vue");
+//
+//
 //
 //
 //
@@ -2199,6 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Blog',
   data: function data() {
@@ -2209,7 +2213,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    Card: _components_Card__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Card: _components_Card__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     truncateText: function truncateText(string) {
@@ -3806,70 +3811,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "my-4" }, [
-    _c("h1", [_vm._v("Blog")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      _vm._l(_vm.posts, function(post) {
-        return _c("Card", { key: post.id, attrs: { item: post } })
-      }),
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-center my-3" },
-      [
+  return _vm.posts.length > 0
+    ? _c("div", { staticClass: "my-4" }, [
+        _c("h1", [_vm._v("Blog")]),
+        _vm._v(" "),
         _c(
-          "button",
-          {
-            staticClass: "btn btn-dark mr-2",
-            attrs: { disabled: _vm.current_page == 1 },
-            on: {
-              click: function($event) {
-                return _vm.getPosts(_vm.current_page - 1)
-              }
-            }
-          },
-          [_vm._v("\n            Prev\n        ")]
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.posts, function(post) {
+            return _c("Card", { key: post.id, attrs: { item: post } })
+          }),
+          1
         ),
         _vm._v(" "),
-        _vm._l(_vm.last_page, function(n) {
-          return _c(
-            "button",
-            {
-              key: n,
-              staticClass: "btn mr-2",
-              class: n == _vm.current_page ? "btn-primary" : "btn-dark",
-              on: {
-                click: function($event) {
-                  return _vm.getPosts(n)
-                }
-              }
-            },
-            [_vm._v("\n            " + _vm._s(n) + "\n        ")]
-          )
-        }),
-        _vm._v(" "),
         _c(
-          "button",
-          {
-            staticClass: "btn btn-dark",
-            attrs: { disabled: _vm.current_page == _vm.last_page },
-            on: {
-              click: function($event) {
-                return _vm.getPosts(_vm.current_page + 1)
-              }
-            }
-          },
-          [_vm._v("\n            Next\n        ")]
+          "div",
+          { staticClass: "text-center my-3" },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-dark mr-2",
+                attrs: { disabled: _vm.current_page == 1 },
+                on: {
+                  click: function($event) {
+                    return _vm.getPosts(_vm.current_page - 1)
+                  }
+                }
+              },
+              [_vm._v("\n            Prev\n        ")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.last_page, function(n) {
+              return _c(
+                "button",
+                {
+                  key: n,
+                  staticClass: "btn mr-2",
+                  class: n == _vm.current_page ? "btn-primary" : "btn-dark",
+                  on: {
+                    click: function($event) {
+                      return _vm.getPosts(n)
+                    }
+                  }
+                },
+                [_vm._v("\n            " + _vm._s(n) + "\n        ")]
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-dark",
+                attrs: { disabled: _vm.current_page == _vm.last_page },
+                on: {
+                  click: function($event) {
+                    return _vm.getPosts(_vm.current_page + 1)
+                  }
+                }
+              },
+              [_vm._v("\n            Next\n        ")]
+            )
+          ],
+          2
         )
-      ],
-      2
-    )
-  ])
+      ])
+    : _c("Loader")
 }
 var staticRenderFns = []
 render._withStripped = true
