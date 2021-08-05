@@ -23,6 +23,7 @@
                 @enderror
             </div>
             
+            {{-- categories --}}
             <div class="form-group">
                 <label for="category_id">Categoria</label>
                 <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
@@ -37,7 +38,26 @@
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
+            {{-- /categories --}}
 
+            {{-- file upload --}}
+            <div class="form-group">
+                <label for="cover">Immagine di copertina</label>
+
+                @if ($post->cover)
+                    <div class="mb-3">
+                        <img style="width: 200px" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}"> 
+                    </div>
+                @endif
+
+                <input type="file" name="cover" class="form-control-file @error('cover') is-invalid @enderror" id="cover">
+                @error('cover')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            {{-- /file upload --}}
+
+            {{-- tags --}}
             <div class="form-group mb-3">
                 <h5>Tags</h5>
                 @foreach ($tags as $tag)
@@ -63,7 +83,7 @@
                     </div>
                 @enderror   
             </div>    
-
+            {{-- /tags --}}
             
             <button type="submit" class="btn btn-success">Salva</button>
             <a class="btn btn-secondary ml-3" href="{{ route("admin.posts.index") }}">Torna all'elenco post</a>

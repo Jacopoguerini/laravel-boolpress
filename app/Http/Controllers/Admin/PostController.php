@@ -151,6 +151,14 @@ class PostController extends Controller
             $data["slug"] = $slug;
         }
 
+        if(array_key_exists('cover', $data)) {
+            if($post->cover) {
+                Storage::delete($post->cover);
+            }
+
+            $data["cover"] = Storage::put('post_covers', $data["cover"]);
+        }
+
         $post->update($data);
 
         if(array_key_exists('tags', $data)) {
@@ -172,9 +180,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->cover) {
+            Storage::delete($post->cover);
+        }
+
         $post->delete();
 
-       return redirect()
+        return redirect()
         ->route('admin.posts.index')
         ->with('deleted', "$post->slug eliminato con successo.");
     }
