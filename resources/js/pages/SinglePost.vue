@@ -2,17 +2,20 @@
     <div class="my-4" v-if="post">
         <h1>{{ post.title }}</h1>
 
-        <h3>
-            <span class="badge badge-info">{{ post.category.name }}</span>
-        </h3>
+        <div class="h4" v-if="post.category">
+            <router-link class="badge badge-primary" :to="{ name: 'category', params: { slug: post.category.slug } }">
+                {{ post.category.name }}
+            </router-link>
+        </div>
 
-        <h5>
-            <span class="badge badge-pill badge-dark mr-1"
-            v-for="tag in post.tags"
-            :key="`tag-${tag.id}`">
+        <router-link
+            class="badge badge-pills badge-info mr-2 mb-3"
+            v-for="tag in post.tags" :key="`tag-${tag.id}`"
+            :to="{ name: 'tag', params: { slug: tag.slug } }">
                 {{ tag.name }}
-            </span>
-        </h5>
+        </router-link>
+
+        <img class="img-fluid rounded mx-auto d-block" style="width: 800px" :src="post.cover" :alt="post.title">
 
         <p class="my-3">{{ post.content }}</p>
 

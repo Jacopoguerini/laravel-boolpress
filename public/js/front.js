@@ -2018,6 +2018,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
   props: {
@@ -2314,6 +2315,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Loader */ "./resources/js/components/Loader.vue");
+//
+//
+//
 //
 //
 //
@@ -3579,6 +3583,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-4 my-2 d-flex" }, [
     _c("div", { staticClass: "card w-100" }, [
+      _c("img", {
+        staticClass: "card-img-top",
+        attrs: { src: _vm.item.cover, alt: _vm.item.title }
+      }),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "card-body" },
@@ -4068,26 +4077,52 @@ var render = function() {
         [
           _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
           _vm._v(" "),
-          _c("h3", [
-            _c("span", { staticClass: "badge badge-info" }, [
-              _vm._v(_vm._s(_vm.post.category.name))
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "h5",
-            _vm._l(_vm.post.tags, function(tag) {
-              return _c(
-                "span",
-                {
-                  key: "tag-" + tag.id,
-                  staticClass: "badge badge-pill badge-dark mr-1"
-                },
-                [_vm._v("\n            " + _vm._s(tag.name) + "\n        ")]
+          _vm.post.category
+            ? _c(
+                "div",
+                { staticClass: "h4" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "badge badge-primary",
+                      attrs: {
+                        to: {
+                          name: "category",
+                          params: { slug: _vm.post.category.slug }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(_vm.post.category.name) +
+                          "\n        "
+                      )
+                    ]
+                  )
+                ],
+                1
               )
-            }),
-            0
-          ),
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.post.tags, function(tag) {
+            return _c(
+              "router-link",
+              {
+                key: "tag-" + tag.id,
+                staticClass: "badge badge-pills badge-info mr-2 mb-3",
+                attrs: { to: { name: "tag", params: { slug: tag.slug } } }
+              },
+              [_vm._v("\n            " + _vm._s(tag.name) + "\n    ")]
+            )
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "img-fluid rounded mx-auto d-block",
+            staticStyle: { width: "800px" },
+            attrs: { src: _vm.post.cover, alt: _vm.post.title }
+          }),
           _vm._v(" "),
           _c("p", { staticClass: "my-3" }, [_vm._v(_vm._s(_vm.post.content))]),
           _vm._v(" "),
@@ -4100,7 +4135,7 @@ var render = function() {
             [_vm._v("Torna all'elenco dei post")]
           )
         ],
-        1
+        2
       )
     : _c("Loader")
 }
