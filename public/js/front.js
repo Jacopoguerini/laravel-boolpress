@@ -1984,6 +1984,14 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Header: _components_Header__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _components_Footer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function handler(to, from) {
+        document.title = "Boolpress | " + to.meta.title;
+      }
+    }
   }
 });
 
@@ -3651,9 +3659,11 @@ var render = function() {
         staticClass: "text-center navbar navbar-expand-lg navbar-dark bg-dark"
       },
       [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("Boolpress")
-        ]),
+        _c(
+          "router-link",
+          { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
+          [_vm._v("Boolpress")]
+        ),
         _vm._v(" "),
         _c("div", [
           _c("ul", { staticClass: "navbar-nav" }, [
@@ -3697,7 +3707,8 @@ var render = function() {
             )
           ])
         ])
-      ]
+      ],
+      1
     )
   ])
 }
@@ -20219,19 +20230,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '/',
     name: 'home',
-    component: _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"],
+    meta: {
+      title: 'Home'
+    }
   }, {
     path: '/about',
     name: 'about',
-    component: _pages_About__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _pages_About__WEBPACK_IMPORTED_MODULE_3__["default"],
+    meta: {
+      title: 'About'
+    }
   }, {
     path: '/blog',
     name: 'blog',
-    component: _pages_Blog__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _pages_Blog__WEBPACK_IMPORTED_MODULE_4__["default"],
+    meta: {
+      title: 'Blog'
+    }
   }, {
     path: '/blog/:slug',
     name: 'single-post',
-    component: _pages_SinglePost__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _pages_SinglePost__WEBPACK_IMPORTED_MODULE_5__["default"],
+    meta: {
+      title: 'Post'
+    }
   }, {
     path: '*',
     name: 'not-found',

@@ -16,22 +16,26 @@ const router = new VueRouter({
         {
             path: '/',
             name: 'home',
-            component: Home 
+            component: Home,
+            meta: { title: 'Home' }
         },
         {
             path: '/about',
             name: 'about',
-            component: About
+            component: About,
+            meta: { title: 'About' }
         },
         {
             path: '/blog',
             name: 'blog',
-            component: Blog 
+            component: Blog,
+            meta: { title: 'Blog' }
         },
         {
             path: '/blog/:slug',
             name: 'single-post',
-            component: SinglePost 
+            component: SinglePost,
+            meta: { title: 'Post' }
         },
         {
             path: '*',
@@ -39,6 +43,6 @@ const router = new VueRouter({
             component: NotFound
         }
     ]
-}); 
+});
 
 export default router;

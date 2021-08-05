@@ -41,6 +41,17 @@
                 @enderror
             </div>
 
+            {{-- upload image --}}
+            <div class="form-group">
+                <label for="cover">immagine del post</label>
+                <input type="file" name="cover" class="form-control-file @error('cover') is-invalid @enderror" id="cover">
+                @error('cover')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            {{-- /upload image --}}
+
+            {{-- tags --}}
             <div class="form-group mb-3">
                 <h6>Tag</h6>
                 @foreach ($tags as $tag)
@@ -61,6 +72,7 @@
                     </div>
                 @enderror   
             </div>
+            {{-- /tags --}}
             
             <button type="submit" class="btn btn-success">Aggiungi</button>
             <a class="btn btn-secondary ml-3" href="{{ route("admin.posts.index") }}">Torna all'elenco post</a>

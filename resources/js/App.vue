@@ -27,6 +27,14 @@ export default {
     components: {
         Header,
         Footer
+    },
+    watch: {
+        $route: {
+            immediate: true,
+            handler(to, from) {
+                document.title = "Boolpress | " + to.meta.title;
+            }
+        }
     }
 } 
 </script>
