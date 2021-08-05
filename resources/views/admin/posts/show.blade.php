@@ -38,8 +38,20 @@
                 <input type="submit" class="btn btn-danger ml-3" value="ELIMINA">
             </form>
         </div>
-
-        <p>{{$post->content}}</p>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                @if ($post->cover)
+                    <img class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+                @else 
+                    <img class="img-fluid" src="{{ asset('images/placeholder.png') }}" alt="{{ $post->title }}">    
+                @endif
+                
+            </div>
+            <div class="col-md-6">
+                {{ $post->content }}
+            </div>
+        </div>
     </div>
 
     <div class="m-3 d-flex justify-content-center">

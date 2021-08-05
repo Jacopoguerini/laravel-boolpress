@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -15,7 +17,8 @@ class PostController extends Controller
         'title' => 'required|max:255',
         'content' => 'required',
         'category_id' => 'exists:categories,id',
-        'tags' => 'exists:tags,id'
+        'tags' => 'exists:tags,id',
+        'cover.*' => 'nullable|file|image|max:2048'
     ];
 
     private function createSlug($data) {
@@ -77,11 +80,25 @@ class PostController extends Controller
 
         $newPost = new Post();
 
-        $slug = $this->createSlug($data);
+        // upload immagine
+        if(array_key_exists('cover', $data)) {
+            // versione in 2 passaggi
+            // $img_path = Storage::put('post_covers', $data["cover"]);
+            // // sovrascrivo l'oggetto di classe UploadedFile con il nome del file restituito dalla put
+            // $data["cover"] = $img_path;
 
+            // per fare operazioni di upload/cancellazione su disco diverso da quello di default
+            // $data["cover"] = Storage::disk('public')->put('post_covers', $data["cover"]);
+
+            $data["cover"] = Storage::put('post_covers', $data["cover"]);
+
+        }
+
+        // generazione slug
+        $slug = $this->createSlug($data);
         $data['slug'] = $slug;
-        
         $newPost->fill($data);
+
         $newPost->save();
 
         if(array_key_exists('tags', $data)) {
